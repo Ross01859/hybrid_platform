@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import { setupCSRF } from './config/utils'
+// import { setupCSRF } from './config/utils'
 import './assets/public/js/checkfun'
 
 if (navigator.userAgent.indexOf('MSIE') !== -1) {
