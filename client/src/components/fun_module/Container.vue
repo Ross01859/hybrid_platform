@@ -62,7 +62,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.Height)
+    // console.log(this.Height)
   },
   methods: {
     submit() {

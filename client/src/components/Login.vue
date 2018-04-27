@@ -98,10 +98,10 @@ export default {
             }
           }).then(function(res) {
             if (res.data.error_code == 200) {
+              that.openFullScreen()
               sessionStorage.setItem('user', JSON.stringify(that.ruleForm.username))
               that.$store.dispatch('login')
-              console.log(that.ruleForm.username)
-              that.openFullScreen()
+              that.$cookies.set('logined', that.$store.state.logined, 60 * 30)
               that.$router.push('/home')
             }
             if (res.data.error_code == -200) {

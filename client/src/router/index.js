@@ -11,21 +11,24 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    { path: '/login', redirect: { name: 'login' } },
+    { path: '/', redirect: { name: 'login' } },
     { path: '*', redirect: { name: 'login' } },
-    { path: '/', name: 'login', component: login },
+    { path: '/login', name: 'login', component: login },
     {
       path: '/home',
       name: 'home',
       redirect: '/home/container',
+      meta: { auth: true },
       component: home,
       children: [{
         name: 'container',
         path: 'container',
+        meta: { auth: true },
         component: container
       }, {
         name: 'curd',
         path: 'curd',
+        meta: { auth: true },
         component: curd
       }]
     }

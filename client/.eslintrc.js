@@ -55,7 +55,8 @@ module.exports = {
             }
         ],
         "no-console": [
-            "error", { allow: ["warn", "error", "debug", "log"] }
+
+            "error", { allow: ["warn", "error", "debug", "log", "info"] }
         ],
         // allow paren-less arrow functions
         'arrow-parens': 0,

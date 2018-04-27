@@ -57,7 +57,7 @@ export default {
   },
   mounted() {
     $('.el-menu-vertical-demo').height(this.Height - 200)
-    console.log(this.$store)
+    // console.log(this.$store)
   },
   methods: {
     handleOpen(key, keyPath) {

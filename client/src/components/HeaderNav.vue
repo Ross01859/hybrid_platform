@@ -10,11 +10,11 @@
         </el-input>
       </div>
       <div class="demo-input-size">
-        <el-button icon="el-icon-info" class="wers-button">{{username}}
+        <el-button icon="el-icon-info" class="wers-button">{{login_name}}
         </el-button>
         <el-button icon="el-icon-bell" class="wers-button">消息
         </el-button>
-        <el-button icon="el-icon-close" class="wers-button" @click="router_jump('/')">EXIT
+        <el-button icon="el-icon-close" class="wers-button" @click="logout">EXIT
         </el-button>
       </div>
     </div>
@@ -25,12 +25,17 @@ export default {
   data() {
     return {
       input_value: '',
-      username: 'test'
+      login_name: ''
     }
   },
+  created() {
+    this.login_name = $.parseJSON(sessionStorage.getItem('user'))
+  },
   methods: {
-    router_jump(url) {
-      this.$router.push(url)
+    logout() {
+      sessionStorage.removeItem('user')
+      this.$store.dispatch('logout')
+      this.$router.push('/')
     }
   }
 }

@@ -6,6 +6,8 @@ import router from './router'
 import axios from 'axios'
 // import 'es6-promise/auto'
 import store from './store/store'
+import VueCookies from 'vue-cookies'
+// import { addCookie, getCookie, delCookie, allCookie } from './config/cookie'
 
 
 import ElementUI from 'element-ui'
@@ -20,6 +22,7 @@ import $ from 'jquery'
 axios.defaults.baseURL = 'http://192.168.1.134:3000'
 // axios.request(Qs)
 Vue.use(ElementUI)
+Vue.use(VueCookies)
 
 Vue.prototype.$ajax = axios
 Vue.prototype.$echarts = echarts
@@ -30,13 +33,16 @@ Vue.config.productionTip = false
 
 // 这个官方名字叫导航守卫，挺形象的
 router.beforeEach((to, from, next) => {
-  // 如果是去登录或注册，那就先把user移除
-  if (to.path === '/login' || to.path === '/regin') {
-    sessionStorage.removeItem('user')
-  }
-  let user = JSON.parse(sessionStorage.getItem('user'))
-  if (!user && (to.path === '/home' || to.path === '/home/container' || to.path === '/home/curd')) {
-    next({ path: '/login' })
+  let that = VueCookies
+  if (to.matched.some(m => m.meta.auth)) {
+    if (that.get('logined')) {
+      if (to.path === '/login' || to.path === '/regin') {
+        sessionStorage.removeItem('user')
+      }
+      next()
+    } else {
+      next({ path: '/login' })
+    }
   } else {
     next()
   }
