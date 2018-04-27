@@ -1,7 +1,7 @@
 <template>
   <div class="wers-header-box">
     <div class="header-left-box">
-      <img src="../assets/public/imgs/logo.png" @click="router_jump" alt="">
+      <img src="../assets/public/imgs/logo.png" @click="router_jump('/home')" alt="">
     </div>
     <div class="header-right-box">
       <div class="demo-input-size">
@@ -14,7 +14,7 @@
         </el-button>
         <el-button icon="el-icon-bell" class="wers-button">消息
         </el-button>
-        <el-button icon="el-icon-close" class="wers-button">EXIT
+        <el-button icon="el-icon-close" class="wers-button" @click="router_jump('/')">EXIT
         </el-button>
       </div>
     </div>
@@ -29,8 +29,8 @@ export default {
     }
   },
   methods: {
-    router_jump() {
-      this.$router.push('/home')
+    router_jump(url) {
+      this.$router.push(url)
     }
   }
 }

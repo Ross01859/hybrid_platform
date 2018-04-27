@@ -9,7 +9,7 @@
           <menunav></menunav>
         </el-aside>
         <el-main>
-          <mainnav></mainnav>
+          <router-view/>
         </el-main>
       </el-container>
     </el-container>
@@ -18,7 +18,6 @@
 <script>
 import headernav from './HeaderNav'
 import menunav from './MenuNav'
-import mainnav from './MainNav'
 export default {
   name: 'home',
   data() {
@@ -26,10 +25,25 @@ export default {
 
     }
   },
+  mounted() {
+
+  },
+  methods: {
+    openFullScreen() {
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 1)'
+      })
+      setTimeout(() => {
+        loading.close()
+      }, 1000)
+    }
+  },
   components: {
     menunav,
-    headernav,
-    mainnav
+    headernav
   }
 }
 

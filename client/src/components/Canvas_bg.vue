@@ -49,10 +49,12 @@ export default {
 
       // create particles
       this.circles = []
-      for (let x = 0; x < this.width * 0.5; x++) {
+      for (let x = 0; x < this.width; x++) {
+
         let c = new this.Circle(ctrl)
         this.circles.push(c)
       }
+      // console.log(this.circles)
       this.animate()
     },
     // Event handling

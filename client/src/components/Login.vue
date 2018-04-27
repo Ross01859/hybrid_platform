@@ -58,14 +58,6 @@ export default {
         password: [
           { validator: validatePass, trigger: 'blur' }
         ]
-      },
-      loading_options: {
-        target: document.body,
-        fullscreen: true,
-        text: 'loading',
-        spinner: '',
-        background: '#f3f3f3',
-        customClass: 'wers-loading-style'
       }
     }
   },
@@ -74,8 +66,20 @@ export default {
   },
   mounted() {
     $('.demo-ruleForm').hide()
+    // $('input').attr('autofocus')
   },
   methods: {
+    openFullScreen() {
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 1)'
+      })
+      setTimeout(() => {
+        loading.close()
+      }, 3000)
+    },
     show_login_form(val) {
       if (val) {
         $('.demo-ruleForm').show(600)
@@ -94,9 +98,11 @@ export default {
             }
           }).then(function(res) {
             if (res.data.error_code == 200) {
+              sessionStorage.setItem('user', JSON.stringify(that.ruleForm.username))
+              that.$store.dispatch('login')
+              console.log(that.ruleForm.username)
+              that.openFullScreen()
               that.$router.push('/home')
-
-              Loading.service(this.loading_options)
             }
             if (res.data.error_code == -200) {
               that.animal()

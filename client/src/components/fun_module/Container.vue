@@ -14,7 +14,7 @@
         <el-row>
           <el-col :span="24" v-for="(o, index) in 1" :key="o" :offset="index > 0 ? 2 : 0">
             <el-card :body-style="{ padding: '0px' }" shadow="none">
-              <img src="../assets/logo.png" class="image">
+              <img src="../../assets/logo.png" class="image">
               <div style="padding: 14px;">
                 <span>好吃的汉堡</span>
                 <div class="bottom clearfix">
@@ -37,6 +37,7 @@
 </template>
 <script type="text/javascript">
 export default {
+  name: 'container',
   data() {
     return {
       textarea: '',
@@ -44,11 +45,11 @@ export default {
       Height: (document.body.clientWidth / 60) + 'rem',
       imgs: {
         url: [
-          require('../assets/public/imgs/bg/1.jpg'),
-          require('../assets/public/imgs/bg/2.jpg'),
-          require('../assets/public/imgs/bg/3.jpg'),
-          require('../assets/public/imgs/bg/4.jpg'),
-          require('../assets/public/imgs/bg/5.jpg')
+          require('../../assets/public/imgs/bg/1.jpg'),
+          require('../../assets/public/imgs/bg/2.jpg'),
+          require('../../assets/public/imgs/bg/3.jpg'),
+          require('../../assets/public/imgs/bg/4.jpg'),
+          require('../../assets/public/imgs/bg/5.jpg')
         ],
         des: [
           '图片一',
@@ -70,7 +71,7 @@ export default {
         method: 'GET',
         url: '/users/ser_u'
       }).then(function(res) {
-        that.textarea = res.data.data[1].age
+        that.textarea = res.data.data[1].tel
       }).catch(function(err) {
         that.textarea = err
       })
