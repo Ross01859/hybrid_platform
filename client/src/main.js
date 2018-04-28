@@ -31,27 +31,27 @@ Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
 
-// 这个官方名字叫导航守卫，挺形象的
+// 这个官方名字叫导航守卫
 router.beforeEach((to, from, next) => {
-  let that = VueCookies
-  if (to.matched.some(m => m.meta.auth)) {
-    if (that.get('logined')) {
-      if (to.path === '/login' || to.path === '/regin') {
-        sessionStorage.removeItem('user')
-      }
-      next()
+    let that = VueCookies
+    if (to.matched.some(m => m.meta.auth)) {
+        if (that.get('logined')) {
+            if (to.path === '/login' || to.path === '/regin') {
+                sessionStorage.removeItem('user')
+            }
+            next()
+        } else {
+            next({ path: '/login' })
+        }
     } else {
-      next({ path: '/login' })
+        next()
     }
-  } else {
-    next()
-  }
 })
 
 new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    store,
+    components: { App },
+    template: '<App/>'
 })
