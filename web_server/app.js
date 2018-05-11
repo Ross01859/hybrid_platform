@@ -1,24 +1,22 @@
 var express = require( 'express' )
 var path = require( 'path' )
 var favicon = require( 'serve-favicon' )
+var session = require( 'express-session' )
 var logger = require( 'morgan' )
 var cookieParser = require( 'cookie-parser' )
 var bodyParser = require( 'body-parser' )
 var cors = require( 'cors' )
-var index = require( './routes/index' )
-var users = require( './routes/users' )
-
-
+var router = require( './routes' )
 
 /*
     sequelize 练习
 */
-var sqldb = require( './sqldb/index' )
-sqldb.sequelize.sync( { force: false } ).then( function() { //sqldb.sequelize.sync接口用于同步模型到数据库
-    console.log( 'server successed to start' )
-} ).catch( function( err ) {
-    console.log( 'server failed to start due to error: %s', err )
-} )
+// var sqldb = require( './sqldb/index' )
+// sqldb.sequelize.sync( { force: false } ).then( function() { //sqldb.sequelize.sync接口用于同步模型到数据库
+//     console.log( 'server successed to start' )
+// } ).catch( function( err ) {
+//     console.log( 'server failed to start due to error: %s', err )
+// } )
 
 
 var fs = require( 'fs' )
@@ -36,6 +34,17 @@ var allowCrossDomain = function( req, res, next ) {
 // app.use(allowCrossDomain)
 app.use( cors() )
 
+//session设置
+app.use( session( {
+    secret: 'vue',
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 30 * 60 * 1000 //session过期时间
+    },
+    name: 'vue-project'
+} ) )
+
 // view engine setup
 app.set( 'views', path.join( __dirname, 'views' ) )
 app.set( 'view engine', 'jade' )
@@ -48,8 +57,7 @@ app.use( bodyParser.urlencoded( { extended: true } ) )
 app.use( cookieParser() )
 app.use( express.static( path.join( __dirname, 'public' ) ) )
 
-app.use( '/', index )
-app.use( '/users', users )
+app.use( '/', router )
 
 // catch 404 and forward to error handler
 app.use( function( req, res, next ) {

@@ -1,6 +1,5 @@
 'use strict'
 const Sequelize = require( 'sequelize' )
-const Op = Sequelize.Op
 
 const all = {
     sequelize: {
@@ -24,6 +23,7 @@ const all = {
             idle: 30000,
             acquire: 60000,
         },
+        secret: 'wers'
     }
 }
 module.exports = all
