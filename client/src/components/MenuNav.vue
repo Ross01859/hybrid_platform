@@ -3,31 +3,21 @@
         <el-row>
             <el-col :span="24">
                 <!-- <el-radio-group v-model="isCollapse">
-  <el-radio-button :label="false">展开</el-radio-button>
-  <el-radio-button :label="true">收起</el-radio-button>
+    <el-radio-button :label="false">展开</el-radio-button>
+    <el-radio-button :label="true">收起</el-radio-button>
 </el-radio-group>
  -->
-                <el-menu default-active="2" class="el-menu-vertical-demo
+                <el-menu default-active="/home/curd" class="el-menu-vertical-demo
 " @open="handleOpen" @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ff403c" :unique-opened="true" :router="true" align="left" :collapse="isCollapse">
-                    <el-submenu index="1">
-                        <template slot="title">
-                            <i class="el-icon-location"></i>
-                            <span>CURD</span>
-                        </template>
-                        <el-menu-item-group>
-                            <el-menu-item index="/home/curd">添加用户</el-menu-item>
-                            <el-menu-item index="/home/container">删除用户</el-menu-item>
-                            <el-menu-item index="/home/curd">修改用户</el-menu-item>
-                            <el-menu-item index="/home/curd">查找用户</el-menu-item>
-                        </el-menu-item-group>
-                    </el-submenu>
+                    <el-menu-item index="/home/curd">
+                        <i class="iconfont el-icon-tubiaozhizuomobanyihuifu-19"></i>
+                        <span slot="title">我的Bug</span>
+                    </el-menu-item>
                     <el-menu-item index="2">
                         <i class="el-icon-menu"></i>
                         <span slot="title">功能模块二</span>
                     </el-menu-item>
                     <el-menu-item index="3" disabled>
-                        <i class="el-icon-document"></i>
-                        <span slot="title">功能模块三</span>
                     </el-menu-item>
                     <el-submenu index="4">
                         <template slot="title">
@@ -57,19 +47,25 @@ export default {
     data() {
         return {
             isCollapse: false,
-            Height: document.documentElement.clientHeight
+            screenHeight: document.documentElement.clientHeight
         }
     },
     mounted() {
-        $('.el-menu-vertical-demo').height(this.Height - 200)
-        // console.log(this.$store)
+        window.onresize = () => {
+            const that = this
+            return ( () => {
+                window.screenHeight = document.documentElement.clientHeight
+                that.screenHeight = window.screenHeight
+                $( '.el-menu-vertical-demo' ).height( that.screenHeight - 200 )
+            } )()
+        }
     },
     methods: {
-        handleOpen(key, keyPath) {
-            console.log(key, keyPath)
+        handleOpen( key, keyPath ) {
+            console.log( key, keyPath )
         },
-        handleClose(key, keyPath) {
-            console.log(key, keyPath)
+        handleClose( key, keyPath ) {
+            console.log( key, keyPath )
         }
     }
 }

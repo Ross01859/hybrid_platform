@@ -26,13 +26,6 @@
                 </el-row>
             </el-col>
         </el-row>
-        <el-row>
-            <el-col>
-                <el-button @click="submit">提交</el-button>
-                <el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="textarea">
-                </el-input>
-            </el-col>
-        </el-row>
     </div>
 </template>
 <script type="text/javascript">
@@ -71,7 +64,7 @@ export default {
                 method: 'GET',
                 url: '/users/ser_u'
             } ).then( function( res ) {
-                that.textarea = res.data.data[ 1 ].tel
+                that.textarea = res.data.data[ 0 ].tel
             } ).catch( function( err ) {
                 that.textarea = err
             } )

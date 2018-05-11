@@ -5,7 +5,7 @@
                 <headernav></headernav>
             </el-header>
             <el-container>
-                <el-aside width="200px">
+                <el-aside width="150px">
                     <menunav></menunav>
                 </el-aside>
                 <el-main>
@@ -31,17 +31,7 @@ export default {
 
     },
     methods: {
-        openFullScreen() {
-            const loading = this.$loading( {
-                lock: true,
-                text: 'Loading',
-                spinner: 'el-icon-loading',
-                background: 'rgba(0, 0, 0, 1)'
-            } )
-            setTimeout( () => {
-                loading.close()
-            }, 1000 )
-        }
+
     },
     components: {
         menunav,
@@ -66,7 +56,7 @@ export default {
 <style type="text/css" media="screen">
 .el-header,
 .el-footer {
-    background-color: rgba(50, 200, 30, .7);
+    background-color: rgba(30, 230, 30, .9);
     color: #333;
     text-align: center;
     line-height: 60px;
