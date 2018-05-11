@@ -30,16 +30,16 @@ import canvasbg from './Canvas_bg'
 export default {
     data() {
 
-        var username = (rule, value, callback) => {
-            if (value === '') {
-                callback(new Error('请输入登陆账号'))
+        var username = ( rule, value, callback ) => {
+            if ( value === '' ) {
+                callback( new Error( '请输入登陆账号' ) )
             } else {
                 callback()
             }
         }
-        var validatePass = (rule, value, callback) => {
-            if (value === '') {
-                callback(new Error('请输入密码'))
+        var validatePass = ( rule, value, callback ) => {
+            if ( value === '' ) {
+                callback( new Error( '请输入密码' ) )
             } else {
                 callback()
             }
@@ -65,77 +65,85 @@ export default {
         canvasbg
     },
     mounted() {
-        $('.demo-ruleForm').hide()
+        $( '.demo-ruleForm' ).hide()
         // $('input').attr('autofocus')
     },
     methods: {
         openFullScreen() {
-            const loading = this.$loading({
+            const loading = this.$loading( {
                 lock: true,
                 text: 'Loading',
                 spinner: 'el-icon-loading',
                 background: 'rgba(0, 0, 0, 1)'
-            })
-            setTimeout(() => {
+            } )
+            setTimeout( () => {
                 loading.close()
-            }, 3000)
+            }, 3000 )
         },
-        show_login_form(val) {
-            if (val) {
-                $('.demo-ruleForm').show(600)
+        show_login_form( val ) {
+            if ( val ) {
+                $( '.demo-ruleForm' ).show( 600 )
             }
         },
-        submitForm(formName) {
+        submitForm( formName ) {
             let that = this
-            that.$refs[formName].validate((valid) => {
-                if (valid) {
-                    that.$ajax({
+            that.$refs[ formName ].validate( ( valid ) => {
+                if ( valid ) {
+                    that.$ajax( {
                         method: 'post',
-                        url: 'users/login',
+                        url: '/login',
                         params: {
+                            token: that.$store.state.token,
                             username: that.ruleForm.username,
                             password: that.ruleForm.password
                         }
-                    }).then(function(res) {
-                        if (res.data.error_code == 200) {
-                            that.openFullScreen()
-                            sessionStorage.setItem('user', JSON.stringify(that.ruleForm.username))
-                            that.$store.dispatch('login')
-                            that.$cookies.set('logined', that.$store.state.logined, 60 * 30)
-                            that.$router.push('/home')
+                    } ).then( function( res ) {
+                        if ( res.data.error_code == 0 ) {
+                            that.openFullScreen() //loading 加载等待
+                            sessionStorage.setItem( 'user', JSON.stringify( that.ruleForm.username ) )
+                            that.$store.dispatch( 'login' )
+                            that.$cookies.set( 'logined', that.$store.state.logined, 60 * 30 )
+
+                            that.$cookies.set( 'token', res.data.token, 60 * 30 ) //s*m*h
+                            that.$router.push( '/home' )
                         }
-                        if (res.data.error_code == -200) {
+                        if ( res.data.error_code == 1 || res.data.error_code == 3 ) {
                             that.animal()
                             that.play()
-                            console.log('账号或密码错误')
+                            console.log( '用户不存在，请先注册' )
                         }
-                    }).catch(function(err) {
-                        console.log(err)
-                    })
+                        if ( res.data.error_code == 2 || res.data.error_code == 3 ) {
+                            that.animal()
+                            that.play()
+                            console.log( '账号或密码错误' )
+                        }
+                    } ).catch( function( err ) {
+                        console.log( err )
+                    } )
                 } else {
-                    console.log('error submit!!')
+                    console.log( 'error submit!!' )
                 }
-            })
+            } )
         },
-        resetForm(formName) {
-            this.$refs[formName].resetFields()
+        resetForm( formName ) {
+            this.$refs[ formName ].resetFields()
         },
         animal() {
             // $('.demo-ruleForm').addClass('shake-hard')
-            $('.demo-ruleForm').addClass('shake-rotate warning-style')
-            setTimeout(function() {
+            $( '.demo-ruleForm' ).addClass( 'shake-rotate warning-style' )
+            setTimeout( function() {
                 // $('.demo-ruleForm').removeClass('shake-hard')
-                $('.demo-ruleForm').removeClass('shake-rotate warning-style')
-            }, 300)
+                $( '.demo-ruleForm' ).removeClass( 'shake-rotate warning-style' )
+            }, 300 )
         },
 
         play() {
-            let audio = $('#audio')[0]
+            let audio = $( '#audio' )[ 0 ]
             audio.play()
         },
         stop() {
-            let audio = $('#audio')[0]
-            if (this.isPlaying) {
+            let audio = $( '#audio' )[ 0 ]
+            if ( this.isPlaying ) {
                 this.isPlaying = false
                 audio.pause()
                 audio.currentTime = 0
@@ -164,12 +172,12 @@ export default {
     }
 }
 
-</style>
-<style type="text/css" media="screen">
-@import url('../../static/bg/css/csshake.css');
-
 .el-form-item__label {
     color: #fff;
 }
+
+</style>
+<style type="text/css" media="screen">
+@import url('../../static/bg/css/csshake.css');
 
 </style>

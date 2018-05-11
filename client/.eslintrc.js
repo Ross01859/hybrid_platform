@@ -48,13 +48,20 @@ module.exports = {
             "error",
             "never"
         ],
+        "key-spacing": [
+            "error",
+            {
+                "afterColon": true,
+                "space-before-function-paren": true,
+            }
+        ],
         "no-console": [
             "error", { allow: [ "warn", "error", "debug", "log", "info" ] }
         ],
         // allow paren-less arrow functions
         'arrow-parens': 0,
         // allow async-await
-        'generator-star-spacing': 'off',
+        'generator-star-spacing': 'on',
         // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-tabs': 'off',
