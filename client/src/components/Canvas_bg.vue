@@ -33,6 +33,7 @@ export default {
             this.form_show = true
             $( '.main-title' ).children( 'span' ).hide()
             this.$emit( 'listen_form_show', this.form_show )
+
         },
         initHeader() {
             var ctrl = this
@@ -53,6 +54,7 @@ export default {
 
                 let c = new this.Circle( ctrl )
                 this.circles.push( c )
+
             }
             // console.log(this.circles)
             this.animate()
@@ -74,6 +76,7 @@ export default {
                 }
             }
             requestAnimationFrame( this.animate )
+
         },
         resize() {
 
@@ -84,6 +87,7 @@ export default {
             this.canvas.height = this.height
         },
         Circle( ctrl ) {
+
             let that = ctrl
             let _this = this
             // constructor
@@ -97,15 +101,17 @@ export default {
                 _this.scale = 0.1 + Math.random() * 0.3
                 _this.velocity = Math.random()
             }
-            _this.draw = function() {
+            _this.draw = function () {
                 if ( _this.alpha <=
                     0 ) {
+
                     init()
                 }
                 _this.pos.y -= _this.velocity
                 _this.alpha -= 0.00005
                 that.ctx.beginPath()
                 that.ctx.arc( _this.pos.x, _this.pos.y, _this.scale * 10, 0, 2 * Math.PI, false )
+
                 that.ctx.fillStyle = 'rgba(255,255,255,' + _this.alpha + ')'
                 that.ctx.fill()
             }

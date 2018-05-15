@@ -30,6 +30,7 @@ export default new Router( {
                 path: 'curd',
                 meta: { auth: true },
                 component: curd
+
             } ]
         }
     ]

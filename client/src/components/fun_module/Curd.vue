@@ -5,10 +5,10 @@
                 <div class="wers-bug-form">
                     <el-form ref="form" :model="form" label-width="100px">
                         <el-form-item label="bug名称">
-                            <el-input type="text" v-model="form.name"></el-input>
+                            <el-input v-model="form.name"></el-input>
                         </el-form-item>
                         <el-form-item label="bug类型">
-                            <el-input type="text" v-model="form.type"></el-input>
+                            <el-input v-model="form.type"></el-input>
                         </el-form-item>
                         <el-form-item label="bug描述">
                             <el-input type="textarea" v-model="form.desc"></el-input>
@@ -189,6 +189,7 @@ export default {
             this.$message( msg )
         }
     }
+
 }
 
 </script>
