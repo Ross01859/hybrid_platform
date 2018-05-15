@@ -1,3 +1,9 @@
+/*
+ * @Author: wangruishan
+ * @Date:   2018-05-12 23:44:38
+ * @Last Modified by:   wangruishan
+ * @Last Modified time: 2018-05-13 00:26:50
+ */
 module.exports = {
     root: false,
     parserOptions: {
@@ -23,7 +29,7 @@ module.exports = {
     rules: {
         "indent": [
             "error",
-            2
+            4
         ],
         "linebreak-style": [
             "error",
@@ -46,25 +52,23 @@ module.exports = {
         ],
         "array-bracket-spacing": [
             "error",
-            "never"
+            "always"
         ],
         "key-spacing": [
             "error",
-            {
-                "afterColon": true
-            }
         ],
         "no-console": [
-            "error", { allow: ["warn", "error", "debug", "log"] }
+            "error", { allow: [ "warn", "error", "debug", "log", "info" ] }
         ],
         // allow paren-less arrow functions
         'arrow-parens': 0,
         // allow async-await
-        'generator-star-spacing': 'off',
+        'generator-star-spacing': 'error',
         // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-tabs': 'off',
         '-W099': true,
-        'no-undef': 0
+        'no-undef': 0,
+
     }
 };
