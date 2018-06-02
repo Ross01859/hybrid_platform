@@ -54,21 +54,30 @@ export default {
 
 </style>
 <style type="text/css" media="screen">
-.el-header,
-.el-footer {
-    background-color: rgba(30, 230, 30, .9);
+.el-header {
+    background-color: rgba(66, 73, 81, 1);
     color: #333;
     text-align: center;
     line-height: 60px;
     padding: 0px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
 }
 
 .el-aside {
-    background-color: #D3DCE6;
+    /* background-color: #D3DCE6; */
     color: #333;
     text-align: center;
     height: 100%;
     overflow: hidden;
+    margin-top: 20px;
+    position: fixed;
+    top: 70px;
+    left: 0px;
+    z-index: 999;
 }
 
 
@@ -77,6 +86,8 @@ export default {
     color: #333;
     text-align: center;
     height: 100%;
+    margin-left: 170px;
+    margin-top: 70px;
 }
 
 body>.el-container {

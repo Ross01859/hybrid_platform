@@ -92,7 +92,7 @@ export default {
             let _this = this
             // constructor
             _this.pos = {}
-            init()
+            // init()
 
             function init() {
                 _this.pos.x = Math.random() * that.width

@@ -7,9 +7,9 @@
     <el-radio-button :label="true">收起</el-radio-button>
 </el-radio-group>
  -->
-                <el-menu default-active="/home/curd" class="el-menu-vertical-demo
+                <el-menu default-active="/home/bug_sys" class="el-menu-vertical-demo
 " @open="handleOpen" @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ff403c" :unique-opened="true" :router="true" align="left" :collapse="isCollapse">
-                    <el-menu-item index="/home/curd">
+                    <el-menu-item index="/home/bug_sys">
                         <i class="iconfont el-icon-tubiaozhizuomobanyihuifu-19"></i>
                         <span slot="title">我的Bug</span>
                     </el-menu-item>
@@ -84,7 +84,7 @@ export default {
 .wers-menu-box {
     height: 100%;
     .el-menu-vertical-demo {
-        box-shadow: 0px 5px 10px #ee3;
+        // box-shadow: 0px 5px 10px #ee3;
     }
 }
 

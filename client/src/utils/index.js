@@ -1,4 +1,4 @@
-function csrfSafeMethod( method ) {
+/*function csrfSafeMethod( method ) {
     // these HTTP methods do not require CSRF protection
     return ( /^(GET|HEAD|OPTIONS|TRACE)$/.test( method ) )
 }
@@ -7,7 +7,7 @@ export function setupCSRF() {
     var csrftoken = getCookie( '_xsrf' )
 
     $.ajaxSetup( {
-        beforeSend: function( xhr, settings ) {
+        beforeSend: function ( xhr, settings ) {
             if ( !csrfSafeMethod( settings.type ) && !this.crossDomain ) {
                 xhr.setRequestHeader( 'X-Xsrftoken', csrftoken )
             }
@@ -51,3 +51,16 @@ export function allCookie() { //读取所有保存的cookie字符串
     }
     console.log( str )
 }
+*/
+
+let utils = {
+    isNull: function ( obj ) {
+
+    },
+    isString: function ( obj ) {
+
+    },
+
+}
+
+module.exports = utils

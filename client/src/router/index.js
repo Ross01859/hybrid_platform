@@ -3,8 +3,9 @@ import Router from 'vue-router'
 import home from '@/components/Home'
 import login from '@/components/Login'
 
-import container from '@/components/fun_module/Container'
-import curd from '@/components/fun_module/Curd'
+import container from '@/components/single_page/Container'
+// import curd from '@/components/single_page/Curd'
+import bug_sys from '@/components/model_components/Bug_sys/Bug_init'
 
 Vue.use( Router )
 
@@ -26,10 +27,10 @@ export default new Router( {
                 meta: { auth: true },
                 component: container
             }, {
-                name: 'curd',
-                path: 'curd',
+                name: 'bug_sys',
+                path: 'bug_sys',
                 meta: { auth: true },
-                component: curd
+                component: bug_sys
 
             } ]
         }
