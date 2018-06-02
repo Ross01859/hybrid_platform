@@ -4,10 +4,10 @@ const Sequelize = require( 'sequelize' )
 const all = {
     sequelize: {
         username: 'root',
-        password: 'G1n2g90',
+        password: 'F1n2g90',
         database: 'test_db',
-        host: 'localhost',
-        dialect: 'mysql',
+        host: '127.0.0.1',
+        dialect: 'mysqli',
         operatorsAliases: false,
         define: {
             underscored: false,
