@@ -4,7 +4,7 @@ const Sequelize = require( 'sequelize' )
 const all = {
     sequelize: {
         username: 'root',
-        password: 'F1n2g90',
+        password: 'G1n2g90',
         database: 'test_db',
         host: 'localhost',
         dialect: 'mysql',
@@ -25,5 +25,7 @@ const all = {
         },
         secret: 'wers'
     }
+
+
 }
 module.exports = all

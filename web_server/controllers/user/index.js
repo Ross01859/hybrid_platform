@@ -2,7 +2,7 @@
  * @Author: wangruishan
  * @Date:   2018-05-08 22:17:43
  * @Last Modified by:   wangruishan
- * @Last Modified time: 2018-05-10 18:18:51
+ * @Last Modified time: 2018-05-27 23:49:45
  */
 const bcrypt = require( "bcrypt-nodejs" );
 const jwt = require( "jsonwebtoken" );
@@ -10,7 +10,7 @@ const _model = require( '../../models/action' );
 const userSequelize = require( '../../models/index' ).user;
 module.exports = {
 
-    init: async function( req, res ) {
+    init: async function ( req, res ) {
         var body = { error_code: 0, result: '' };
         try {
             var result = await _model.findAll( userSequelize );
@@ -22,7 +22,7 @@ module.exports = {
             res.json( body );
         }
     },
-    login: async function( req, res, next ) {
+    login: async function ( req, res, next ) {
         var param = req.query || req.params || req.body
         var body = { error_code: 0, result: '' };
         try {
@@ -56,7 +56,37 @@ module.exports = {
             res.json( body );
         }
     },
-    register: async function( req, res ) {
+    login_get: async function ( req, res, next ) {
+        var param = req.query || req.params || req.body
+        var body = { error_code: 0, result: '' };
+        try {
+            var condition = {
+                attributes: [ 'username', 'password' ],
+                where: {
+                    username: param.username
+                }
+            }
+            var user = await _model.findOne( userSequelize, condition );
+            if ( !!user ) {
+                if ( bcrypt.compareSync( param.password, user.password ) ) {
+                    // if (req.body.password === user.password) {
+                    body.result = user.username;
+                } else {
+                    body.error_code = 1;
+                    body.result = '密码输入有误';
+                }
+            } else {
+                body.error_code = 1;
+                body.result = '用户不存在,请先注册';
+            }
+        } catch ( e ) {
+            body.error_code = 1;
+            body.result = e.message;
+        } finally {
+            res.json( body );
+        }
+    },
+    register: async function ( req, res ) {
         var param = req.query || req.params || req.body
         var body = { error_code: 0, result: '' };
         try {
@@ -76,7 +106,7 @@ module.exports = {
             res.json( body );
         }
     },
-    withdraw: async function( req, res ) {
+    withdraw: async function ( req, res ) {
         var body = { error_code: 0, result: '' };
         try {
             var result = await _model.deleteAll( userSequelize, { where: { crealname: req.body.crealname } } );

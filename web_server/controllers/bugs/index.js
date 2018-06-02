@@ -1,8 +1,8 @@
 /*
  * @Author: wangruishan
  * @Date:   2018-05-09 18:14:31
- * @Last Modified by:   ruishanwang
- * @Last Modified time: 2018-05-14 18:59:32
+ * @Last Modified by:   wangruishan
+ * @Last Modified time: 2018-05-15 14:24:03
  */
 
 const _model = require( '../../models/action' );
@@ -27,7 +27,7 @@ module.exports = {
         let param = JSON.parse( req.body.data || req.query.data || req.params.data )
         // let param = str.parseJSON()
         var body = { error_code: 0, result: '' }
-        console.log( param.name )
+        // console.log( param.name )
         try {
             let attr = {
                 bug_name: param.name || '未定义',
