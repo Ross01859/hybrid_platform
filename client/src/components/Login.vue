@@ -83,7 +83,7 @@ export default {
         show_login_form( val ) {
             if ( val ) {
                 $( '.demo-ruleForm' ).show( 600 )
-            }
+            } 
         },
         submitForm( formName ) {
             let that = this

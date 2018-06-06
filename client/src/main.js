@@ -18,7 +18,8 @@ import './assets/public/css/Global.css'
 /*eslint-disable*/
 import $ from 'jquery'
 // axios.defaults.baseURL = 'http://192.168.31.169:3000'
-axios.defaults.baseURL = 'http://www.yuzkyut.top:3000'
+// axios.defaults.baseURL = 'http://www.yuzkyut.top:3000'
+axios.defaults.baseURL = 'http://cnyzvip.com:3000'
 // axios.request(Qs)
 Vue.use( ElementUI )
 Vue.use( VueCookies )
